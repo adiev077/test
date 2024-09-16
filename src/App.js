@@ -1,65 +1,84 @@
-import './App.css';
-import { useState } from 'react';
+import "./App.css";
+import { useState } from "react";
 
 function App() {
-  const [count, setCount] = useState(0);
+  const [position, setPosition] = useState("");
+  const translateX = position === "left" ? "-300px" : "300px";
 
-  const plus = () => {
-    if (count < 10) {
-      setCount(prevCount => prevCount + 1);
-    }
-    if(count === 10) {
-      alert("достигнуто 10")
-    }
-  };
-
-  const min = () => {
-    if (count > 0) {
-      setCount(prevCount => prevCount - 1);
-    }
-    if(count === 0) {
-      alert("Нельзя меньше 0")
-    }
+  const togglePosition = (position) => {
+    setPosition(position);
   };
 
   return (
-    <div className="App" style={{
-      height: 700,
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'center'
-    }}>
-      <div style={{
-        display: 'flex',
-        gap: 20,
-      }}>
-        <button
-          onClick={min}
+    <>
+      <div
+        style={{
+          backgroundColor: "green",
+          width: "700px",
+          height: "350px",
+          position: "relative",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div
+          onClick={() => togglePosition("left")}
           style={{
-            padding: '5px 50px',
-            border: 'none',
-            borderRadius: 5,
-            background: 'red',
-            color: 'white',
+            width: 10,
+            height: 100,
+            backgroundColor: "#fff",
+            position: "absolute",
+            left: "10px",
+            cursor: "pointer",
+          }}
+        ></div>
+        <div
+          style={{
+            position: "absolute",
+            zIndex: 2,
+            width: 50,
+            height: 50,
+            backgroundColor: "#000",
+            borderRadius: "50%",
+            transform: position !== "" ? `translateX(${translateX})` : "",
+            transition: "all 1s",
+          }}
+        ></div>
+        <div
+          style={{
+            position: "absolute",
+            width: "5px",
+            height: "100%",
+            backgroundColor: "#fff",
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
           }}
         >
-          -
-        </button>
-        <div>{count}</div>
-        <button
-          onClick={plus}
+          <div
+            style={{
+              position: "absolute",
+              width: "200px",
+              height: "200px",
+              border: "5px solid #fff",
+              borderRadius: "50%",
+            }}
+          ></div>
+        </div>
+        <div
+          onClick={() => togglePosition("right")}
           style={{
-            padding: '5px 50px',
-            border: 'none',
-            borderRadius: 5,
-            background: 'blue',
-            color: 'white',
+            width: 10,
+            height: 100,
+            backgroundColor: "#fff",
+            position: "absolute",
+            right: "10px",
+            cursor: "pointer",
           }}
-        >
-          +
-        </button>
+        ></div>
       </div>
-    </div>
+    </>
   );
 }
 
