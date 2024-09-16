@@ -10,7 +10,12 @@ function App() {
   };
 
   return (
-    <>
+    <div style={{
+      height: 700,
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center"
+    }}>
       <div
         style={{
           backgroundColor: "green",
@@ -78,7 +83,7 @@ function App() {
           }}
         ></div>
       </div>
-    </>
+    </div>
   );
 }
 
