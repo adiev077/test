@@ -5,21 +5,21 @@ function App() {
   const [count, setCount] = useState(0);
 
   const plus = () => {
-    setCount(prevCount => {
-      if (prevCount === 9) {
-        alert('Достигнуто 10!');
-      }
-      return prevCount < 10 ? prevCount + 1 : prevCount;
-    });
+    if (count < 10) {
+      setCount(prevCount => prevCount + 1);
+    }
+    if(count === 10) {
+      alert("достигнуто 10")
+    }
   };
 
   const min = () => {
-    setCount(prevCount => {
-      if (prevCount === 1) {
-        alert('Достигнуто 0!');
-      }
-      return prevCount > 0 ? prevCount - 1 : prevCount;
-    });
+    if (count > 0) {
+      setCount(prevCount => prevCount - 1);
+    }
+    if(count === 0) {
+      alert("Нельзя меньше 0")
+    }
   };
 
   return (
