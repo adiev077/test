@@ -3,27 +3,23 @@ import { useState } from 'react';
 
 function App() {
   const [count, setCount] = useState(0);
-  const [intervalId, setIntervalId] = useState(null);
 
-  const startInterval = (increment) => {
-    if (intervalId) {
-      clearInterval(intervalId);
-    }
+  const plus = () => {
+    setCount(prevCount => {
+      if (prevCount === 9) {
+        alert('Достигнуто 10!');
+      }
+      return prevCount < 10 ? prevCount + 1 : prevCount;
+    });
+  };
 
-    const id = setInterval(() => {
-      setCount(prevCount => {
-        if (increment && prevCount < 10) {
-          return prevCount + 1;
-        }
-        if (!increment && prevCount > 0) {
-          return prevCount - 1;
-        }
-        clearInterval(id);
-        return prevCount;
-      });
-    }, 1000);
-
-    setIntervalId(id);
+  const min = () => {
+    setCount(prevCount => {
+      if (prevCount === 1) {
+        alert('Достигнуто 0!');
+      }
+      return prevCount > 0 ? prevCount - 1 : prevCount;
+    });
   };
 
   return (
@@ -38,24 +34,26 @@ function App() {
         gap: 20,
       }}>
         <button
-          onClick={() => startInterval(false)}
+          onClick={min}
           style={{
             padding: '5px 50px',
             border: 'none',
             borderRadius: 5,
-            background: 'red'
+            background: 'red',
+            color: 'white',
           }}
         >
           -
         </button>
         <div>{count}</div>
         <button
-          onClick={() => startInterval(true)}
+          onClick={plus}
           style={{
             padding: '5px 50px',
             border: 'none',
             borderRadius: 5,
-            background: 'blue'
+            background: 'blue',
+            color: 'white',
           }}
         >
           +
